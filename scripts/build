@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Builds one phi-packages PKGBUILD in a clean chroot (master plan §3.1).
+# Run on zotac, the only build machine (32 GB RAM; mini never compiles
+# anything). Requires base-devel, devtools, go, pacman-contrib — installed
+# by hand, listed in master plan §15.8.
+#
+# The chroot is created once and reused, but makechrootpkg -c cleans it back
+# to its pristine snapshot before every build, so each package is built the
+# same way regardless of what a previous build left behind.
+set -euo pipefail
+
+usage() {
+	echo "usage: $0 <package-dir>" >&2
+	echo "  e.g. $0 phi" >&2
+	exit 1
+}
+
+[[ $# -eq 1 ]] || usage
+pkg_dir=$1
+[[ -f "$pkg_dir/PKGBUILD" ]] || { echo "no PKGBUILD in $pkg_dir" >&2; exit 1; }
+
+chroot_root=${PHI_PACKAGES_CHROOT:-$HOME/.cache/phi-packages/chroot}
+
+if [[ ! -d "$chroot_root/root" ]]; then
+	mkdir -p "$chroot_root"
+	mkarchroot "$chroot_root/root" base-devel
+fi
+
+cd "$pkg_dir"
+makechrootpkg -c -r "$chroot_root"

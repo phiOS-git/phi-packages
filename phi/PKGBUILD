@@ -1,0 +1,29 @@
+# Maintainer: flavio <flaviofm99@gmail.com>
+pkgname=phi
+pkgver=0.1.0
+pkgrel=1
+pkgdesc="phiOS unified CLI"
+arch=('x86_64')
+url="https://github.com/phiOS-git/phi"
+license=('custom')
+makedepends=('go')
+source=("git+https://github.com/phiOS-git/phi.git#tag=v${pkgver}")
+sha256sums=('SKIP')
+
+build() {
+	cd "$srcdir/phi"
+	export CGO_ENABLED=0
+	# internal/build.Version is "dev" in a local checkout; this is the only
+	# place that ever overwrites it (phi/CLAUDE.md, phi/internal/build/build.go).
+	go build -trimpath -ldflags "-s -w -X phi/internal/build.Version=${pkgver}" -o phi ./cmd/phi
+}
+
+check() {
+	cd "$srcdir/phi"
+	go vet ./...
+}
+
+package() {
+	cd "$srcdir/phi"
+	install -Dm755 phi "$pkgdir/usr/bin/phi"
+}

@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Signs built packages with the phi packaging key and adds them to a local
+# [phi] repository database (master plan §3.1). Run on zotac after
+# scripts/build. The signing key never leaves zotac and is never in any
+# repository (phi-packages/CLAUDE.md).
+#
+# This script only ever writes to a local directory. Getting that directory
+# to mini:/srv/pkg/phi is a separate, manual, machine-address-bearing step —
+# this repository never holds mini's overlay address (CLAUDE.md rule 5).
+set -euo pipefail
+
+usage() {
+	echo "usage: $0 <repo-dir> <package-file>..." >&2
+	exit 1
+}
+
+[[ $# -ge 2 ]] || usage
+repo_dir=$1
+shift
+
+mkdir -p "$repo_dir"
+
+names=()
+for pkg in "$@"; do
+	[[ -f $pkg ]] || { echo "not a file: $pkg" >&2; exit 1; }
+	gpg --detach-sign "$pkg"
+	cp "$pkg" "$pkg.sig" "$repo_dir/"
+	names+=("$(basename "$pkg")")
+done
+
+cd "$repo_dir"
+repo-add -s -v phi.db.tar.zst "${names[@]}"
