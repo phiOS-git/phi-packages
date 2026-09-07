@@ -7,13 +7,20 @@
 # This script only ever writes to a local directory. Getting that directory
 # to mini:/srv/pkg/phi is a separate, manual, machine-address-bearing step —
 # this repository never holds mini's overlay address (CLAUDE.md rule 5).
+#
+# GPGKEY must name the dedicated packaging key (runbook §5.2), not gpg's
+# default identity — zotac's user almost certainly already has a personal
+# key, and signing packages with one key while repo-add -s signs the
+# database with another (gpg's default vs $GPGKEY) fails every install with
+# SigLevel = Required and no obvious reason why.
 set -euo pipefail
 
 usage() {
-	echo "usage: $0 <repo-dir> <package-file>..." >&2
+	echo "usage: GPGKEY=<key-id> $0 <repo-dir> <package-file>..." >&2
 	exit 1
 }
 
+: "${GPGKEY:?set GPGKEY to the phi packaging key id}"
 [[ $# -ge 2 ]] || usage
 repo_dir=$1
 shift
@@ -23,7 +30,7 @@ mkdir -p "$repo_dir"
 names=()
 for pkg in "$@"; do
 	[[ -f $pkg ]] || { echo "not a file: $pkg" >&2; exit 1; }
-	gpg --detach-sign "$pkg"
+	gpg --detach-sign -u "$GPGKEY" "$pkg"
 	cp "$pkg" "$pkg.sig" "$repo_dir/"
 	names+=("$(basename "$pkg")")
 done
