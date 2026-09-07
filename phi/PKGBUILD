@@ -1,6 +1,6 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 pkgname=phi
-pkgver=0.4.1
+pkgver=0.4.2
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
