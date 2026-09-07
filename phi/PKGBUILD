@@ -6,7 +6,7 @@ pkgdesc="phiOS unified CLI"
 arch=('x86_64')
 url="https://github.com/phiOS-git/phi"
 license=('custom')
-makedepends=('go')
+makedepends=('go' 'git')
 source=("git+https://github.com/phiOS-git/phi.git#tag=v${pkgver}")
 sha256sums=('SKIP')
 
