@@ -75,10 +75,21 @@ hand — never by `phios-install`, which only ever shows the difference:
 
 - `profiles/base/system/etc/pacman.d/phi-mirrorlist` — a real, diffable file
   at its real absolute path, holding the `Server =` line. It ships with
-  `<mini-overlay-address>` as a literal placeholder; nothing here or anywhere
-  else in either repository ever fills it in.
+  `<mini-overlay-address>` and `<port>` as literal placeholders; nothing here
+  or anywhere else in either repository ever fills them in. Don't try to
+  `sed` both a placeholder and its replacement value in one command — it's
+  easy to end up substituting a string for itself and silently changing
+  nothing (this happened on the real `zotac` run). Just overwrite the whole
+  line: `echo "Server = http://<addr>:<port>/" | sudo tee
+  /etc/pacman.d/phi-mirrorlist`.
 - `profiles/base/manual.txt` — the two-line `[phi]` section that
   `Include=`s the file above into `/etc/pacman.conf` (which itself has no
   drop-in mechanism for a repository section — the same limitation
   `profiles/gaming/manual.txt` already documents for `multilib`), plus the
   `pacman-key --add`/`--lsign-key` step for the packaging public key.
+
+The exported public key file (`phi-packaging-key.asc`) only exists on
+`zotac`, where it was generated — `pacman-key --add` needs it present
+locally on every host, so `scp` it to `razer` and `mini` before running that
+step there. Nothing here does that automatically; it is not a file either
+repository tracks (the key is `[USER]` material, never committed).
