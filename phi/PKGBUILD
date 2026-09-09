@@ -1,6 +1,10 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
+#
+# 0.13.0 tracks the `agent-panel-rework` branch (Out-of-plan). It does NOT
+# build until `v0.13.0` is tagged on the phi repo — which happens only when
+# that branch is merged, per the user's "merge on my confirmation".
 pkgname=phi
-pkgver=0.12.1
+pkgver=0.13.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
