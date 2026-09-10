@@ -1,5 +1,11 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 #
+# 0.16.0: `phi firewall` (Out-of-plan: firewall) — an nftables inbound
+# firewall behind ~/.config/phi/firewall.json: status / enable / disable /
+# preset (home|public|paranoid) / allow / remove / log / blocked. Enforced
+# as one `table inet phi`, applied via sudo -n and persisted to
+# /etc/nftables.conf. Tagged v0.16.0 at the firewall merge.
+#
 # 0.15.0: shell-features SF-2 — `phi vpn` now sees /etc/wireguard configs
 # and running interfaces (not just its own dir), plus `phi vpn import` /
 # `phi vpn forget` for the settings-panel WireGuard management.
@@ -14,7 +20,7 @@
 # 0.13.0: agent panel rework (Out-of-plan OOP-26) — three-level memory,
 # structured projects, transcript mirror, A2 session store. Tagged v0.13.0.
 pkgname=phi
-pkgver=0.15.0
+pkgver=0.16.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
