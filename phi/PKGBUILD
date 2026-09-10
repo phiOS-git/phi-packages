@@ -1,5 +1,11 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 #
+# 0.16.1: `phi firewall blocked` greps the kernel log for `phi-fw` instead
+# of `phi-fw:` — a literal ':' in the pinned sudoers command argument is a
+# parse error (`visudo -cf` rejects the file). The exact `phi-fw:` filter
+# still runs in-process. Ships alongside 49-phi-firewall's matching fix.
+# Tagged v0.16.1.
+#
 # 0.16.0: `phi firewall` (Out-of-plan: firewall) — an nftables inbound
 # firewall behind ~/.config/phi/firewall.json: status / enable / disable /
 # preset (home|public|paranoid) / allow / remove / log / blocked. Enforced
@@ -20,7 +26,7 @@
 # 0.13.0: agent panel rework (Out-of-plan OOP-26) — three-level memory,
 # structured projects, transcript mirror, A2 session store. Tagged v0.13.0.
 pkgname=phi
-pkgver=0.16.0
+pkgver=0.16.1
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
