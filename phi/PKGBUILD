@@ -1,5 +1,10 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 #
+# 0.15.0: shell-features SF-2 — `phi vpn` now sees /etc/wireguard configs
+# and running interfaces (not just its own dir), plus `phi vpn import` /
+# `phi vpn forget` for the settings-panel WireGuard management.
+# Tagged v0.15.0 at the shell-features merge.
+#
 # 0.14.0: settings-overhaul phi verbs (OOP-37…OOP-47 — `phi vpn` WireGuard
 # control, `phi wallpaper` procedural textures + state keys, `phi theme
 # contrast`, `phi pkg` system-state listing) + the advanced runner
@@ -9,7 +14,7 @@
 # 0.13.0: agent panel rework (Out-of-plan OOP-26) — three-level memory,
 # structured projects, transcript mirror, A2 session store. Tagged v0.13.0.
 pkgname=phi
-pkgver=0.14.0
+pkgver=0.15.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
