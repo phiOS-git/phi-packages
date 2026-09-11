@@ -9,6 +9,10 @@ Part of the phiOS workspace. The workspace `AGENTS.md` (one level up, or in
 repository — **branch locally, only `main`/`dev` on the remote; only
 official Arch packages; no secrets in a public repo.** Not repeated here.
 
+When your work matches an entry in the workspace's `docs/TODO.md`, claim it
+with `[taken]` and report the result in `docs/VERIFICATION.md` — see *The
+TODO / VERIFICATION loop* in the workspace `AGENTS.md`.
+
 ## The release boundary — read this
 
 **Only the user builds signed packages and publishes them.** An agent's
