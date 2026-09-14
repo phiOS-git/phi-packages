@@ -1,5 +1,19 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 #
+# 0.17.0: `phi agent ask`/`phi agent code` surface the real failure instead
+# of a raw JSON dump or a bare containment error (a rejected turn's
+# provider message; which A2 support systemd unit isn't running) — the AI
+# agent subsystem's mechanics were already sound, this fixes every state
+# that used to fail silently. Also folds in runner-bar/`phi query` work
+# since 0.16.1: the "phi " command prefix routing, a timer/alarm provider,
+# full category ranking order (+ ask-ai-agent), opening images via `imv`
+# explicitly, hibernate/reboot/shutdown system actions; `phi state`
+# nightmode.schedule keys; an `internal/mathx` implicit-plot fix. Tagged
+# v0.17.0 — NOTE: tagged directly on `phi`'s `dev` (not `main`, the usual
+# convention — AGENTS.md rule 1 leaves merging dev into main to the user,
+# so it wasn't done here); the tag itself still resolves and builds fine
+# either way, since `source=` below fetches by tag name, not by branch.
+#
 # 0.16.1: `phi firewall blocked` greps the kernel log for `phi-fw` instead
 # of `phi-fw:` — a literal ':' in the pinned sudoers command argument is a
 # parse error (`visudo -cf` rejects the file). The exact `phi-fw:` filter
@@ -26,7 +40,7 @@
 # 0.13.0: agent panel rework (Out-of-plan OOP-26) — three-level memory,
 # structured projects, transcript mirror, A2 session store. Tagged v0.13.0.
 pkgname=phi
-pkgver=0.16.1
+pkgver=0.17.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
