@@ -1,5 +1,28 @@
 # Maintainer: flavio <flaviofm99@gmail.com>
 #
+# 0.20.0: new `phi fan` verb — real PWM fan control via the standard Linux
+# hwmon ABI (status/list/set), confirmed live against zotac's nct6798 chip
+# (a real hwmon PWM interface, official lm_sensors + in-kernel driver, no
+# AUR); the privileged write path needs the companion phios-dotfiles
+# sudoers drop-in (49-phi-fan), never applied by this repo. Also:
+# `internal/state` gains theme.schedule/theme.schedule-start/theme.
+# schedule-end for phi-shell's live auto light/dark theme option, and
+# `internal/query`'s image results now open through phi-shell's own native
+# floating image window (`qs ipc call image open`) instead of a bare `imv`
+# invocation. Tagged v0.20.0 on `main` (fast-forwarded from `dev`, a clean
+# 6-commit gap, build+tests verified before tagging).
+#
+# 0.19.0: `phi agent project` gains a way to leave the active project
+# (`--none`), so the agent panel isn't stuck scoped to one project forever.
+# Tagged v0.19.0.
+#
+# 0.18.0: `phi query` gains a stopwatch runner provider (StopwatchProvider),
+# recognising "stopwatch", "stopwatch start/resume", "stopwatch pause/stop",
+# "stopwatch reset", "stopwatch lap" in the launcher bar, each handed to
+# phi-shell as a `qs ipc call stopwatch <verb>`. Companion to the existing
+# timer/alarm provider; pairs with phi-shell's new Services/Stopwatch.qml.
+# Tagged v0.18.0.
+#
 # 0.17.0: `phi agent ask`/`phi agent code` surface the real failure instead
 # of a raw JSON dump or a bare containment error (a rejected turn's
 # provider message; which A2 support systemd unit isn't running) — the AI
@@ -40,7 +63,7 @@
 # 0.13.0: agent panel rework (Out-of-plan OOP-26) — three-level memory,
 # structured projects, transcript mirror, A2 session store. Tagged v0.13.0.
 pkgname=phi
-pkgver=0.17.0
+pkgver=0.20.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
