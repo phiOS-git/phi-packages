@@ -1,6 +1,6 @@
 # phi-packages
 
-PKGBUILDs and build scripts for every own package (master plan §3.1). This
+PKGBUILDs and build scripts for every in-house package. This
 repository produces packages; it never installs them, and it never touches a
 real machine — `scripts/build` and `scripts/publish` are run by the user, on
 `zotac`.
@@ -44,8 +44,8 @@ One-time: creates a chroot at `~/.cache/phi-packages/chroot` (override with
 `PHI_PACKAGES_CHROOT`) via `mkarchroot`. Every build then runs
 `makechrootpkg -c`, which resets the chroot to its clean snapshot first — the
 same starting point every time, regardless of what a previous build left
-behind. Needs `base-devel`, `devtools`, `go`, `pacman-contrib` (master plan
-§15.8), installed by hand on `zotac` — the only build machine, chosen for its
+behind. Needs `base-devel`, `devtools`, `go`, `pacman-contrib`, installed by
+hand on `zotac` — the only build machine, chosen for its
 32 GB of RAM; `mini` never compiles anything.
 
 ## Publishing
@@ -69,7 +69,7 @@ repository, this one included.
 
 ## Registering a host
 
-Every machine (master plan §3.1: "registrato in `/etc/pacman.conf` di ogni
+Every machine (registered in `/etc/pacman.conf` of every
 macchina") needs two things, both declared by `phios-dotfiles` and applied by
 hand — never by `phios-install`, which only ever shows the difference:
 

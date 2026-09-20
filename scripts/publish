@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Signs built packages with the phi packaging key and adds them to a local
-# [phi] repository database (master plan §3.1). Run on zotac after
+# [phi] repository database. Run on zotac after
 # scripts/build. The signing key never leaves zotac and is never in any
 # repository (phi-packages/CLAUDE.md).
 #
@@ -8,7 +8,7 @@
 # to mini:/srv/pkg/phi is a separate, manual, machine-address-bearing step —
 # this repository never holds mini's overlay address (CLAUDE.md rule 5).
 #
-# GPGKEY must name the dedicated packaging key (runbook §5.2), not gpg's
+# GPGKEY must name the dedicated packaging key, not gpg's
 # default identity — zotac's user almost certainly already has a personal
 # key, and signing packages with one key while repo-add -s signs the
 # database with another (gpg's default vs $GPGKEY) fails every install with

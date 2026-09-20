@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Builds one phi-packages PKGBUILD in a clean chroot (master plan §3.1).
+# Builds one phi-packages PKGBUILD in a clean chroot.
 # Run on zotac, the only build machine (32 GB RAM; mini never compiles
 # anything). Requires base-devel, devtools, go, pacman-contrib — installed
-# by hand, listed in master plan §15.8.
+# by hand.
 #
 # The chroot is created once and reused, but makechrootpkg -c cleans it back
 # to its pristine snapshot before every build, so each package is built the
