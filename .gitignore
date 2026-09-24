@@ -1,3 +1,6 @@
 *.log
 *.zst
 phi/phi
+
+phi-repo/
+build-and-publish.md
