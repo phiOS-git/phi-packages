@@ -5,7 +5,7 @@
 # rebuild with no source change.
 
 pkgname=phi
-pkgver=0.22.0
+pkgver=0.23.0
 pkgrel=1
 pkgdesc="phiOS unified CLI"
 arch=('x86_64')
